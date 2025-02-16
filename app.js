@@ -8,6 +8,7 @@ import subscriptionRouter from "./routes/subscription.routes.js";
 import subjectRouter from "./routes/subject.routes.js";
 import questionRouter from "./routes/question.routes.js";
 import topicRouter from "./routes/topic.routes.js";
+import connectDB from "./database/mongodb.js";
 
 const app = express();
 
@@ -22,8 +23,9 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Prep Sathi Server is running on port http://localhost:${PORT}`);
+  await connectDB();
 });
 
 export default app;
