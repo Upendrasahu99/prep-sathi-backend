@@ -45,7 +45,7 @@ const signUp = async (req, res, next) => {
   }catch(error){
     await session.abortTransaction();
     session.endSession();
-    next(error);
+    next(error); // Pass the error to the error middleware
   }
 }
 const signIn = async (req, res, next) => {
