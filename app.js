@@ -9,12 +9,14 @@ import questionRouter from "./routes/question.routes.js";
 import topicRouter from "./routes/topic.routes.js";
 import connectDB from "./database/mongodb.js";
 import errorMiddleware from "./middlewares/error.middleware.js";
+import arjectMiddleware from "./middlewares/arcjet.middleware.js";
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(arjectMiddleware);
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
