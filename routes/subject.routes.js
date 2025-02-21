@@ -1,13 +1,11 @@
 import { Router } from "express";
-import { addSubject } from '../controllers/subject.controller.js'
+import { addSubject, getSubjects } from '../controllers/subject.controller.js'
 
 const subjectRouter = Router();
 
 // path:/api/v1/subjects
 
-subjectRouter.get("/", (req, res) => {
-  res.send({ message: "Get all subjects" });
-});
+subjectRouter.get("/", getSubjects);
 
 subjectRouter.get("/:id", (req, res) => {
   res.send({ message: "Get subject details" });
