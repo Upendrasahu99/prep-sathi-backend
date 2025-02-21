@@ -6,7 +6,7 @@ const userRouter = Router();
 
 // path:/api/v1/users
 
-userRouter.get("/", getUsers);
+userRouter.get("/", authorize, getUsers);
 
 userRouter.get("/:id", authorize, getUser);
 
