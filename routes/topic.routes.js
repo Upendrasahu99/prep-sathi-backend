@@ -1,18 +1,18 @@
 import { Router } from "express";
+import { addTopic,getTopics } from '../controllers/topic.controller.js';
+
 
 const topicRouter = Router();
 
-topicRouter.get("/", (req, res) => {
-  res.send({ message: "Get all topics" });
-});
+// path: /api/v1/topics
+
+topicRouter.get("/", getTopics);
 
 topicRouter.get("/:id", (req, res) => {
   res.send({ message: "Get topic details" });
 });
 
-topicRouter.post("/", (req, res) => {
-  res.send({ message: "Create new topic" });
-});
+topicRouter.post("/", addTopic);
 
 topicRouter.put("/:id", (req, res) => {
   res.send({ message: "Update topic details" });

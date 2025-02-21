@@ -7,6 +7,7 @@ const topicSchema = new mongoose.Schema({
     trim: true,
     minLength: 2,
     maxLength: 100,
+    lowercase: true,  
   },
   subject: {
     type: mongoose.Schema.Types.ObjectId,
