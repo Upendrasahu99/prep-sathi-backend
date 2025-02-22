@@ -1,11 +1,13 @@
 import { Router } from "express";
-import { addQuestion } from "../controllers/question.controller.js";
+import { addQuestion, getQuestionsByTopic  } from "../controllers/question.controller.js";
 
 const questionRouter = Router();
 
 questionRouter.get("/", (req, res) => {
   res.send({ message: "Get all questions" });
 });
+
+questionRouter.get("/topic/:topic", getQuestionsByTopic)
 
 questionRouter.get("/:id", (req, res) => {
   res.send({ message: "Get question details" });

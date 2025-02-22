@@ -23,3 +23,16 @@ export const addQuestion = async (req, res, next) => {
     next(error);
   }
 }
+
+export const getQuestionsByTopic = async (req, res, next) => {
+  const topic = req.params.topic;
+  try {
+    const questions = await Question.find({ topic: topic });
+    res.status(200).json({
+      success: true,
+      data: questions,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
