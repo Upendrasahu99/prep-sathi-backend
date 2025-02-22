@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { addQuestion } from "../controllers/question.controller.js";
 
 const questionRouter = Router();
 
@@ -10,9 +11,7 @@ questionRouter.get("/:id", (req, res) => {
   res.send({ message: "Get question details" });
 });
 
-questionRouter.post("/", (req, res) => {
-  res.send({ message: "Create new question" });
-});
+questionRouter.post("/", addQuestion);
 
 questionRouter.put("/:id", (req, res) => {
   res.send({ message: "Update question details" });
