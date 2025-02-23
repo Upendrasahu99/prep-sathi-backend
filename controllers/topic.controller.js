@@ -32,9 +32,9 @@ export const addTopic = async (req, res, next) =>{
   }
 } 
 
-export const getTopics = async (req, res, next) => {
+export const getTopicsBySubject = async (req, res, next) => {
   try{
-    const topics = await Topic.find();
+    const topics = await Topic.find({ subject: req.params.subjectId });
     res.status(200).json({
       success: true,
       data: topics
