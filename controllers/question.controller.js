@@ -39,3 +39,16 @@ export const getQuestionsByTopic = async (req, res, next) => {
     next(error);
   }
 }
+
+export const getTotalQuestions = async (req, res, next) => {
+  const topic = req.params.topic;
+  try {
+    const totalQuestions = await Question.countDocuments({topic: topic});
+    res.status(200).json({
+      success: true,
+      data: totalQuestions,
+    });
+  } catch (error) {
+    next(error);
+  }
+}

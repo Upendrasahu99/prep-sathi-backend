@@ -1,14 +1,15 @@
 import { Router } from "express";
-import { addQuestion, getQuestionsByTopic  } from "../controllers/question.controller.js";
+import { addQuestion, getQuestionsByTopic, getTotalQuestions  } from "../controllers/question.controller.js";
 
 const questionRouter = Router();
 
-// path:/api/v1/subjects
+// path:/api/v1/questions
 
 questionRouter.get("/", (req, res) => {
   res.send({ message: "Get all questions" });
 });
 
+// path:/api/v1/questions/topic/:topic?size=number
 questionRouter.get("/topic/:topic", getQuestionsByTopic)
 
 questionRouter.get("/:id", (req, res) => {
@@ -37,7 +38,7 @@ questionRouter.post("/:id/check-answer", (req, res) => {
   res.send({ message: "Check answer" });
 }); 
 
-
+questionRouter.get('/count/topic/:topic', getTotalQuestions);
 
 
 export default questionRouter;
