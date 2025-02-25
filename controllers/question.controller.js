@@ -5,8 +5,10 @@ export const addQuestion = async (req, res, next) => {
   const session = await mongoose.startSession();
   session.startTransaction();
   try {
-    const questionArray = req.body;
-
+    let questionArray = req.body.data;
+    const topic = req.body.topic;
+    
+    questionArray = questionArray.map(question => ({ ...question, topic }));
 
     const newQuestion = await Question.insertMany(questionArray,{ session });
     await session.commitTransaction();

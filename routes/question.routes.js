@@ -3,6 +3,8 @@ import { addQuestion, getQuestionsByTopic  } from "../controllers/question.contr
 
 const questionRouter = Router();
 
+// path:/api/v1/subjects
+
 questionRouter.get("/", (req, res) => {
   res.send({ message: "Get all questions" });
 });
