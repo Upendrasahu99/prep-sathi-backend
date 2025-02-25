@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { addTopic, getTopicsBySubject } from '../controllers/topic.controller.js';
-
+import disableProdRoutes from "../middlewares/disableProdRoutes.middleware.js";
 
 const topicRouter = Router();
 
@@ -12,7 +12,7 @@ topicRouter.get("/:id", (req, res) => {
   res.send({ message: "Get topic details" });
 });
 
-topicRouter.post("/", addTopic);
+topicRouter.post("/", disableProdRoutes, addTopic);
 
 topicRouter.put("/:id", (req, res) => {
   res.send({ message: "Update topic details" });

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { addSubject, getSubjects } from '../controllers/subject.controller.js'
+import  disableProdRoutes  from '../middlewares/disableProdRoutes.middleware.js'
 
 const subjectRouter = Router();
 
@@ -11,7 +12,7 @@ subjectRouter.get("/:id", (req, res) => {
   res.send({ message: "Get subject details" });
 });
 
-subjectRouter.post("/", addSubject);
+subjectRouter.post("/", disableProdRoutes, addSubject);
 
 subjectRouter.put("/:id", (req, res) => {
   res.send({ message: "Update subject details" });

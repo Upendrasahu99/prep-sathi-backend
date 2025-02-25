@@ -1,7 +1,9 @@
 import { Router } from "express";
 import { addQuestion, getQuestionsByTopic, getTotalQuestions  } from "../controllers/question.controller.js";
-
+import  disableProdRoutes  from '../middlewares/disableProdRoutes.middleware.js'
+ 
 const questionRouter = Router();
+
 
 // path:/api/v1/questions
 
@@ -16,7 +18,7 @@ questionRouter.get("/:id", (req, res) => {
   res.send({ message: "Get question details" });
 });
 
-questionRouter.post("/", addQuestion);
+questionRouter.post("/", disableProdRoutes, addQuestion);
 
 questionRouter.put("/:id", (req, res) => {
   res.send({ message: "Update question details" });
