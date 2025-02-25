@@ -28,9 +28,10 @@ export const addQuestion = async (req, res, next) => {
 
 export const getQuestionsByTopic = async (req, res, next) => {
   const topic = req.params.topic;
+  const {size} = req.query;
   try {
-    const questions = await Question.find({ topic: topic });
-    res.status(200).json({
+    const questions = await Question.aggregate([ {$match: {topic: new mongoose.Types.ObjectId(topic)}}, { $sample: { size: parseInt(size) } } ]);
+      res.status(200).json({
       success: true,
       data: questions,
     });
