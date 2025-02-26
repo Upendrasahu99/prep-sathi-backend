@@ -11,6 +11,8 @@ import connectDB from "./database/mongodb.js";
 import errorMiddleware from "./middlewares/error.middleware.js";
 import arjectMiddleware from "./middlewares/arcjet.middleware.js";
 
+console.log('start');
+
 const app = express();
 
 app.use(express.json());
@@ -31,9 +33,11 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-app.listen(PORT, async () => {
-  console.log(`Prep Sathi Server is running on port http://localhost:${PORT}`);
-  await connectDB();
-});
+connectDB();
+
+// app.listen(PORT, async () => {
+//   console.log(`Prep Sathi Server is running on port http://localhost:${PORT}`);
+//   await connectDB();
+// });
 
 export default app;
