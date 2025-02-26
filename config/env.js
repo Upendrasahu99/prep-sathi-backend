@@ -1,7 +1,9 @@
-import {config} from 'dotenv'
-import process from 'process';
+import { config } from 'dotenv';
 
-config({path: `.env.${process.env.NODE_ENV || 'development'}.local`});
+if (process.env.NODE_ENV !== 'production') {
+  // Only load local env files when not in production.
+  config({ path: `.env.${process.env.NODE_ENV || 'development'}.local` });
+}
 
 export const {
   PORT, 
