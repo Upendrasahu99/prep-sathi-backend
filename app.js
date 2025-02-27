@@ -1,5 +1,5 @@
 import express from "express";
-import { PORT } from "./config/env.js";
+import { PORT, NODE_ENV } from "./config/env.js";
 import cookieParser from "cookie-parser";
 import authRouter from "./routes/auth.routes.js";
 import userRouter from "./routes/user.routes.js";
@@ -33,11 +33,28 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-connectDB();
 
-// app.listen(PORT, async () => {
-//   console.log(`Prep Sathi Server is running on port http://localhost:${PORT}`);
-//   await connectDB();
-// });
+
+
+if(NODE_ENV === 'development') {
+  // listen will not work with vercel so
+  app.listen(PORT, async () => {
+  console.log(`Prep Sathi Server is running on port http://localhost:${PORT}`);
+    await connectDB();
+  })
+}else{
+  // connect to database 
+  // In a serverless environment (like Vercel),
+  app.use(async (req, res, next) => {
+    try {
+      await connectDB();
+      next();
+    } catch (error) {
+      next(error);
+    }
+  });
+
+}
+
 
 export default app;
