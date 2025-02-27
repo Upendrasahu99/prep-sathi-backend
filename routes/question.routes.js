@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { addQuestion, getQuestionsByTopic, getTotalQuestions  } from "../controllers/question.controller.js";
-import  disableProdRoutes  from '../middlewares/disableProdRoutes.middleware.js'
+import  disableProdRoutes  from '../middlewares/disableProdRoutes.middleware.js';
  
 const questionRouter = Router();
 
