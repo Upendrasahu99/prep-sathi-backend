@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import Subject from '../models/subject.model.js';
+import Topic from '../models/topic.model.js';
 
 export const addSubject = async (req, res, next) => {
   const session = await mongoose.startSession();
@@ -30,10 +31,16 @@ export const addSubject = async (req, res, next) => {
 
 export const getSubjects = async (req, res, next) => {
   try{
-    const subjects = await Subject.find();
+    const subjects = await Subject.find().lean();
+    const subjectsWithTopics = await Promise.all(subjects.map( async (subject) => {
+      const topics = await Topic.find({subject: subject._id});
+      subject.topics = topics;
+      return subject;
+    }));
+
     res.status(200).json({
       success: true,
-      data: subjects
+      data: subjectsWithTopics
     })
   }catch(error){
     next(error);
