@@ -6,6 +6,7 @@ const subjectRouter = Router();
 
 // path:/api/v1/subjects
 
+// Get all subjects with topics
 subjectRouter.get("/", getSubjects);
 
 subjectRouter.get("/:id", (req, res) => {
