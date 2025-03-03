@@ -6,7 +6,7 @@ export const addTopic = async (req, res, next) =>{
   const session = await mongoose.startSession();
   session.startTransaction();
   try{
-    const {name, subject} = req.body;
+    const {name, nameHindi, subject} = req.body;
     const existingTopic = await Topic.findOne({name, subject});
 
     if(existingTopic){
@@ -15,7 +15,7 @@ export const addTopic = async (req, res, next) =>{
       throw error;
     }
 
-    const newTopic = await Topic.create([{name, subject}], {session});
+    const newTopic = await Topic.create([{name, nameHindi, subject}], {session});
 
     await session.commitTransaction();
     session.endSession();
