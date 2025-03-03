@@ -6,8 +6,13 @@ const topicSchema = new mongoose.Schema({
     required: [true, "Topic name is required"],
     trim: true,
     minLength: 2,
-    maxLength: 100,
-    lowercase: true,  
+    maxLength: 100  
+  },
+  nameHindi: {
+    type: String,
+    trim: true,
+    minLength: 2,
+    maxLength: 300  
   },
   subject: {
     type: mongoose.Schema.Types.ObjectId,
