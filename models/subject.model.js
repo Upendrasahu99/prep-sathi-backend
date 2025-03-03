@@ -7,8 +7,13 @@ const subjectSchema = new mongoose.Schema({
     trim: true,
     minLength: 2,
     maxLength: 100,
-    lowercase: true
   },
+  nameHindi:{
+    type: String,
+    trim: true,
+    minLength: 2,
+    maxLength: 300,
+  }
 })
 
 const Subject = mongoose.model("Subject", subjectSchema);
