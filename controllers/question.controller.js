@@ -52,3 +52,16 @@ export const getTotalQuestions = async (req, res, next) => {
     next(error);
   }
 }
+
+export const deleteQuestions = async (req, res, next) => {
+  const topic = req.params.topic;
+  try{
+    const deletedQuestions = await Question.deleteMany({topic: topic});
+    res.status(204).json({
+      success: true,
+      data: deletedQuestions
+    })
+  }catch(error){
+    next(error);
+  }
+}

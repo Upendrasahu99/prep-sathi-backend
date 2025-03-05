@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addQuestion, getQuestionsByTopic, getTotalQuestions  } from "../controllers/question.controller.js";
+import { addQuestion, getQuestionsByTopic, getTotalQuestions, deleteQuestions  } from "../controllers/question.controller.js";
 import  disableProdRoutes  from '../middlewares/disableProdRoutes.middleware.js';
  
 const questionRouter = Router();
@@ -27,6 +27,8 @@ questionRouter.put("/:id", (req, res) => {
 questionRouter.delete("/:id", (req, res) => {
   res.send({ message: "Delete question" });
 });
+
+questionRouter.delete('/topic/:topic', deleteQuestions)
 
 questionRouter.post("/:id/answer", (req, res) => {
   res.send({ message: "Answer question" });
