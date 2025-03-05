@@ -46,6 +46,15 @@ const questionSchema = new mongoose.Schema({
     ref: "Topic",
     required: [true, "Topic is required"],
   },
+  explanations: {
+    type: [{key: String, explanationEnglish: String, explanationHindi: String}],
+    validate: {
+      validator: function(value){
+        return value.length === 4;
+      },
+      message: "Explanations must be an array of 4 objects"
+    }
+  }
 })
 
 const Question = mongoose.model("Question", questionSchema);
